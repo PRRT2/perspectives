@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Basal Ganglia & Sodium Channel Regulation</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
+  :root {
+    --bg: #05090f;
+    --panel: #0b1220;
+    --border: #1a2a40;
+    --dopamine: #e8a020;
+    --gaba: #2eccaa;
+    --sodium: #4da8ff;
+    --prrt2: #e060ff;
+    --danger: #ff4466;
+    --text: #c8d8f0;
+    --dim: #556070;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Mono', monospace;
+    min-height: 100vh;
+    padding: 24px 16px 40px;
+    background-image: radial-gradient(ellipse at 20% 20%, #0a1830 0%, transparent 60%),
+                      radial-gradient(ellipse at 80% 80%, #0d1525 0%, transparent 60%);
+  }
+
+  h1 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.01em;
+    margin-bottom: 4px;
+  }
+
+  .subtitle {
+    font-size: 0.65rem;
+    color: var(--dim);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.6rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── MAIN DIAGRAM ── */
+  .diagram {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* ── PATHWAY ROW ── */
+  .pathway {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    position: relative;
+  }
+
+  .node {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    flex: 1;
+    min-width: 0;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+
+  .node:hover { border-color: #2a4060; }
+
+  .node-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 4px;
+  }
+
+  .node-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  .node-body {
+    font-size: 0.62rem;
+    line-height: 1.55;
+    color: #8a9ab0;
+  }
+
+  .node-tag {
+    display: inline-block;
+    font-size: 0.55rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 4px;
+    margin-top: 7px;
+    font-weight: 700;
+  }
+
+  .tag-dopamine  { background: rgba(232,160,32,0.15);  color: var(--dopamine);  border: 1px solid rgba(232,160,32,0.3); }
+  .tag-gaba      { background: rgba(46,204,170,0.12);  color: var(--gaba);      border: 1px solid rgba(46,204,170,0.3); }
+  .tag-sodium    { background: rgba(77,168,255,0.12);  color: var(--sodium);    border: 1px solid rgba(77,168,255,0.3); }
+  .tag-prrt2     { background: rgba(224,96,255,0.12);  color: var(--prrt2);     border: 1px solid rgba(224,96,255,0.3); }
+  .tag-inhibit   { background: rgba(255,68,102,0.12);  color: var(--danger);    border: 1px solid rgba(255,68,102,0.3); }
+
+  /* ── ARROW CONNECTORS ── */
+  .arrow-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 40px;
+    position: relative;
+  }
+
+  .arrow-line {
+    width: 100%;
+    height: 2px;
+    position: relative;
+  }
+
+  .arrow-line::after {
+    content: '';
+    position: absolute;
+    right: -1px; top: 50%;
+    transform: translateY(-50%);
+    border-left: 7px solid;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+  }
+
+  .arrow-line.dopamine { background: var(--dopamine); }
+  .arrow-line.dopamine::after { border-left-color: var(--dopamine); }
+
+  .arrow-line.gaba { background: var(--gaba); }
+  .arrow-line.gaba::after { border-left-color: var(--gaba); }
+
+  .arrow-line.sodium { background: var(--sodium); }
+  .arrow-line.sodium::after { border-left-color: var(--sodium); }
+
+  .arrow-line.prrt2 { background: var(--prrt2); }
+  .arrow-line.prrt2::after { border-left-color: var(--prrt2); }
+
+  .arrow-label {
+    font-size: 0.5rem;
+    text-align: center;
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* ── VERTICAL ARROW (down) ── */
+  .vertical-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 0;
+    gap: 2px;
+  }
+
+  .v-line {
+    width: 2px;
+    height: 20px;
+    border-radius: 1px;
+  }
+
+  .v-arrow-head {
+    width: 0; height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid;
+  }
+
+  .v-label {
+    font-size: 0.52rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  /* ── CHANNEL BOX ── */
+  .channel-box {
+    background: #060d18;
+    border: 1.5px solid var(--sodium);
+    border-radius: 12px;
+    padding: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .channel-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(77,168,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .channel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .channel-item {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px;
+  }
+
+  .channel-name {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--sodium);
+    margin-bottom: 4px;
+  }
+
+  .channel-desc {
+    font-size: 0.58rem;
+    line-height: 1.5;
+    color: #6a7a90;
+  }
+
+  /* ── MECHANISM ROW ── */
+  .mechanism-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 4px;
+  }
+
+  .mech-card {
+    border-radius: 10px;
+    padding: 12px;
+    border: 1px solid;
+  }
+
+  .mech-card.dopamine-card {
+    background: rgba(232,160,32,0.05);
+    border-color: rgba(232,160,32,0.25);
+  }
+
+  .mech-card.gaba-card {
+    background: rgba(46,204,170,0.05);
+    border-color: rgba(46,204,170,0.25);
+  }
+
+  .mech-title {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .mech-title.dopamine { color: var(--dopamine); }
+  .mech-title.gaba     { color: var(--gaba); }
+
+  .step {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    margin-bottom: 6px;
+  }
+
+  .step-num {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    font-size: 0.5rem;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .step-num.d { background: rgba(232,160,32,0.2); color: var(--dopamine); }
+  .step-num.g { background: rgba(46,204,170,0.2); color: var(--gaba); }
+
+  .step-text {
+    font-size: 0.58rem;
+    line-height: 1.5;
+    color: #8a9ab0;
+  }
+
+  /* ── PRRT2 BANNER ── */
+  .prrt2-banner {
+    background: linear-gradient(135deg, rgba(224,96,255,0.07), rgba(77,168,255,0.07));
+    border: 1px solid rgba(224,96,255,0.3);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-top: 4px;
+  }
+
+  .prrt2-title {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--prrt2);
+    margin-bottom: 6px;
+  }
+
+  .prrt2-body {
+    font-size: 0.6rem;
+    line-height: 1.6;
+    color: #9090b8;
+  }
+
+  .highlight { color: var(--prrt2); font-weight: 700; }
+  .hl-sodium { color: var(--sodium); font-weight: 700; }
+  .hl-dopamine { color: var(--dopamine); }
+  .hl-gaba { color: var(--gaba); }
+
+  /* pulse animation on sodium channel box */
+  @keyframes pulse-border {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(77,168,255,0.0); }
+    50% { box-shadow: 0 0 12px 2px rgba(77,168,255,0.15); }
+  }
+
+  .channel-box { animation: pulse-border 3s ease-in-out infinite; }
+
+  .section-header {
+    font-size: 0.55rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Basal Ganglia → Sodium Channel Regulation</h1>
+<p class="subtitle">Neural circuit mechanisms &amp; PRRT2 intersection</p>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--dopamine)"></div>Dopaminergic</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--gaba)"></div>GABAergic</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--sodium)"></div>Na⁺ Channel</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--prrt2)"></div>PRRT2</div>
+</div>
+
+<div class="diagram">
+
+  <!-- LAYER 1: INPUT -->
+  <div class="section-header">① Input Layer — Cortical Drive</div>
+  <div class="pathway">
+    <div class="node">
+      <div class="node-label">Source</div>
+      <div class="node-title">Cerebral Cortex</div>
+      <div class="node-body">Glutamatergic neurons fire action potentials via <span class="hl-sodium">Nav1.1 / Nav1.2</span> channels, sending excitatory signals down to the striatum.</div>
+      <span class="node-tag tag-sodium">Nav1.1 / Nav1.2 active</span>
+    </div>
+    <div class="arrow-block">
+      <div class="arrow-line sodium" style="--c:var(--sodium)">
+        <span class="arrow-label" style="color:var(--sodium)">Glu</span>
+      </div>
+    </div>
+    <div class="node">
+      <div class="node-label">Basal Ganglia Gate</div>
+      <div class="node-title">Striatum</div>
+      <div class="node-body">Medium spiny neurons (MSNs) receive cortical input. Express <span class="highlight">PRRT2</span>, which acts as an auxiliary subunit stabilising Nav channel gating and surface expression.</div>
+      <span class="node-tag tag-prrt2">PRRT2 high expression</span>
+    </div>
+  </div>
+
+  <!-- LAYER 2: DOPAMINE MODULATION -->
+  <div class="section-header" style="margin-top:8px">② Dopamine — The Gain Knob</div>
+  <div class="pathway">
+    <div class="node">
+      <div class="node-label">Modulator</div>
+      <div class="node-title">Substantia Nigra pars compacta</div>
+      <div class="node-body">Releases <span class="hl-dopamine">dopamine</span> onto striatal MSNs. Acts on D1 (direct) and D2 (indirect) receptors to oppositely regulate PKA signalling.</div>
+      <span class="node-tag tag-dopamine">DA release</span>
+    </div>
+    <div class="arrow-block">
+      <div class="arrow-line dopamine">
+        <span class="arrow-label" style="color:var(--dopamine)">DA</span>
+      </div>
+    </div>
+    <div class="node">
+      <div class="node-label">Effect on Nav channels</div>
+      <div class="node-title">PKA Phosphorylation of Nav</div>
+      <div class="node-body">
+        <strong style="color:var(--dopamine)">D1 (direct path):</strong> ↑PKA → phosphorylates Nav α-subunit → <em>reduces</em> channel availability, suppresses firing.<br><br>
+        <strong style="color:#ff9060">D2 (indirect path):</strong> ↓PKA → <em>increases</em> Nav channel availability, promotes firing.
+      </div>
+      <span class="node-tag tag-dopamine">Nav gating shifted</span>
+    </div>
+  </div>
+
+  <!-- LAYER 3: OUTPUT -->
+  <div class="section-header" style="margin-top:8px">③ Output — GABAergic Brake</div>
+  <div class="pathway">
+    <div class="node">
+      <div class="node-label">Inhibitory Output</div>
+      <div class="node-title">Globus Pallidus Interna / SNr</div>
+      <div class="node-body">Sends tonic <span class="hl-gaba">GABA</span> output to thalamus. Strong inhibition keeps thalamic Nav channels in inactivated state — dampening motor output.</div>
+      <span class="node-tag tag-gaba">Tonic GABA</span>
+    </div>
+    <div class="arrow-block">
+      <div class="arrow-line gaba">
+        <span class="arrow-label" style="color:var(--gaba)">GABA</span>
+      </div>
+    </div>
+    <div class="node">
+      <div class="node-label">Target</div>
+      <div class="node-title">Thalamus (VL/VA)</div>
+      <div class="node-body">GABAergic hyperpolarisation shifts <span class="hl-sodium">Nav</span> channels into recovery from inactivation. When GABA lifts (disinhibition), Nav channels burst → thalamo-cortical volley drives movement.</div>
+      <span class="node-tag tag-sodium">Nav burst firing</span>
+    </div>
+  </div>
+
+  <!-- CHANNEL DETAIL BOX -->
+  <div style="margin-top:8px">
+    <div class="section-header">④ Sodium Channel Biology</div>
+    <div class="channel-box">
+      <div class="node-title" style="color:var(--sodium)">Voltage-Gated Na⁺ Channels in the Circuit</div>
+      <div class="node-body" style="margin-top:4px">Three states — <strong style="color:#fff">resting</strong>, <strong style="color:var(--sodium)">open</strong>, <strong style="color:var(--danger)">inactivated</strong> — determine when a neuron can fire. Basal ganglia activity biases which state predominates.</div>
+      <div class="channel-grid">
+        <div class="channel-item">
+          <div class="channel-name">Nav1.1</div>
+          <div class="channel-desc">High in interneurons &amp; striatum. PRRT2 directly modulates its surface trafficking. Dysfunction → paroxysmal firing bursts.</div>
+        </div>
+        <div class="channel-item">
+          <div class="channel-name">Nav1.2</div>
+          <div class="channel-desc">Cortical &amp; striatal excitatory neurons. PRRT2 slows inactivation recovery — controls refractory period length.</div>
+        </div>
+        <div class="channel-item">
+          <div class="channel-name">Nav1.6</div>
+          <div class="channel-desc">Axon initial segments &amp; nodes of Ranvier. Sets firing threshold. Dopamine-PKA phosphorylation reduces peak current.</div>
+        </div>
+        <div class="channel-item">
+          <div class="channel-name">State Bias</div>
+          <div class="channel-desc"><span style="color:var(--gaba)">GABA ↑</span> → inactivated state held longer.<br><span style="color:var(--dopamine)">DA-D1 ↑</span> → phosphorylated, reduced open probability.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MECHANISMS -->
+  <div style="margin-top:4px">
+    <div class="section-header">⑤ The Two Main Mechanisms</div>
+    <div class="mechanism-row">
+      <div class="mech-card dopamine-card">
+        <div class="mech-title dopamine">Dopaminergic Pathway</div>
+        <div class="step"><div class="step-num d">1</div><div class="step-text">SNc releases DA onto striatal MSN D1/D2 receptors</div></div>
+        <div class="step"><div class="step-num d">2</div><div class="step-text">D1 → ↑cAMP → ↑PKA → phosphorylates Nav α-subunit</div></div>
+        <div class="step"><div class="step-num d">3</div><div class="step-text">Phosphorylated Nav: reduced peak current, faster inactivation → harder to fire</div></div>
+        <div class="step"><div class="step-num d">4</div><div class="step-text">D2 → ↓PKA → opposite: Nav more available, lower threshold</div></div>
+      </div>
+      <div class="mech-card gaba-card">
+        <div class="mech-title gaba">GABAergic Pathway</div>
+        <div class="step"><div class="step-num g">1</div><div class="step-text">GPi/SNr tonically fires → GABA floods thalamic VL/VA nuclei</div></div>
+        <div class="step"><div class="step-num g">2</div><div class="step-text">GABA-A opens Cl⁻ channels → hyperpolarises thalamic cell</div></div>
+        <div class="step"><div class="step-num g">3</div><div class="step-text">Nav channels enter prolonged inactivation — action potential impossible</div></div>
+        <div class="step"><div class="step-num g">4</div><div class="step-text">Disinhibition (GABA lifts) → Nav channels recover → rebound burst → movement</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRRT2 INTERSECTION -->
+  <div class="prrt2-banner">
+    <div class="prrt2-title">PRRT2 — Where It All Intersects</div>
+    <div class="prrt2-body">
+      <span class="highlight">PRRT2</span> (Proline-Rich Transmembrane Protein 2) is an auxiliary subunit concentrated in <span class="hl-sodium">striatal MSNs</span> and cortical neurons. It modulates <span class="hl-sodium">Nav1.1, Nav1.2,</span> and <span class="hl-sodium">Nav1.6</span> α-subunits, slowing their recovery from inactivation and reducing their surface density. A loss-of-function mutation disrupts this brake: channels recover faster, refractory periods shorten, and the neuron becomes prone to <span style="color:var(--danger)">paroxysmal high-frequency bursting</span>.<br><br>
+      Because PRRT2 is embedded within the same striatal circuitry that dopamine and GABA modulate, its dysfunction amplifies the instability of <em>both</em> pathways simultaneously — linking <span class="hl-dopamine">motor</span>, <span class="hl-gaba">sleep/arousal</span>, and <span class="hl-sodium">sensory</span> symptoms through a single shared mechanism.
+    </div>
+  </div>
+
+</div><!-- end diagram -->
+
+
+<div style="margin-top:28px;padding:12px 16px;border-top:1px solid #1a2a40;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;font-family:'Space Mono',monospace;font-size:0.52rem;letter-spacing:0.08em;text-transform:uppercase;color:#556070">
+  <span><span style="color:#e060ff;font-weight:700">PRRT2.org</span> &nbsp;·&nbsp; PRRT2 Gene Alliance</span>
+  <span style="color:#3a4a5a">Alliance Perspectives &nbsp;·&nbsp; Visuals &amp; Diagrams</span>
+</div>
+</body>
+</html>

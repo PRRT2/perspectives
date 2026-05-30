@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My PRRT2 — Nav Channel & Symptom Map · PRRT2 Gene Alliance</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --bg: #04080f;
+  --panel: #080f1c;
+  --border: #112030;
+  --prrt2-good: #00e5a0;
+  --prrt2-bad: #ff3355;
+  --nav: #3a9fff;
+  --sodium: #60cfff;
+  --gaba: #00d4aa;
+  --symptom: #ff6b35;
+  --warning: #ffb830;
+  --text: #b8cce0;
+  --dim: #445566;
+  --white: #e8f0f8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  min-height: 100vh;
+  padding: 20px 16px 60px;
+  background-image: 
+    radial-gradient(ellipse at 15% 10%, rgba(0,100,180,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 90%, rgba(255,51,85,0.05) 0%, transparent 50%);
+}
+
+.title-block {
+  margin-bottom: 28px;
+  border-left: 3px solid var(--prrt2-bad);
+  padding-left: 14px;
+}
+
+h1 {
+  font-family: 'Crimson Pro', serif;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-top: 4px;
+}
+
+.section-label {
+  font-size: 0.52rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+  margin-bottom: 14px;
+}
+
+/* ═══ NAV CHANNEL STRUCTURE ═══ */
+.channel-container {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.channel-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--nav), transparent);
+}
+
+.channel-svg-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* ═══ PRRT2 STATUS BAR ═══ */
+.prrt2-status {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.allele-card {
+  border-radius: 10px;
+  padding: 12px;
+  border: 1px solid;
+  position: relative;
+  overflow: hidden;
+}
+
+.allele-card.working {
+  background: rgba(0,229,160,0.05);
+  border-color: rgba(0,229,160,0.3);
+}
+
+.allele-card.broken {
+  background: rgba(255,51,85,0.05);
+  border-color: rgba(255,51,85,0.3);
+}
+
+.allele-title {
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.allele-title.working { color: var(--prrt2-good); }
+.allele-title.broken { color: var(--prrt2-bad); }
+
+.allele-body {
+  font-size: 0.58rem;
+  line-height: 1.55;
+  color: #6a8090;
+}
+
+.allele-icon {
+  font-size: 1.8rem;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  opacity: 0.15;
+}
+
+/* ═══ WHAT PRRT2 SHOULD DO ═══ */
+.mechanism-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.mech-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.mech-card-title {
+  font-size: 0.56rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--nav);
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.mech-card-body {
+  font-size: 0.56rem;
+  line-height: 1.55;
+  color: #5a7080;
+}
+
+/* ═══ SYMPTOM MAP ═══ */
+.symptom-map {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.symptom-map::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--prrt2-bad), transparent);
+}
+
+.brain-diagram {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  display: block;
+}
+
+/* ═══ SYMPTOM CARDS ═══ */
+.symptom-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.symptom-card {
+  background: var(--panel);
+  border: 1px solid rgba(255,107,53,0.2);
+  border-left: 3px solid var(--symptom);
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  align-items: start;
+}
+
+.symptom-card.primary { border-left-color: var(--prrt2-bad); border-color: rgba(255,51,85,0.2); }
+.symptom-card.secondary { border-left-color: var(--warning); border-color: rgba(255,184,48,0.2); }
+.symptom-card.tertiary { border-left-color: var(--nav); border-color: rgba(58,159,255,0.2); }
+
+.symptom-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  margin-top: 4px;
+  flex-shrink: 0;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.dot-red { background: var(--prrt2-bad); box-shadow: 0 0 6px var(--prrt2-bad); }
+.dot-orange { background: var(--symptom); box-shadow: 0 0 6px var(--symptom); }
+.dot-yellow { background: var(--warning); box-shadow: 0 0 6px var(--warning); }
+.dot-blue { background: var(--nav); box-shadow: 0 0 6px var(--nav); }
+
+.symptom-name {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 3px;
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.85rem;
+}
+
+.symptom-mechanism {
+  font-size: 0.55rem;
+  line-height: 1.5;
+  color: #556070;
+}
+
+.symptom-region {
+  display: inline-block;
+  font-size: 0.5rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-top: 4px;
+  background: rgba(58,159,255,0.1);
+  color: var(--nav);
+  border: 1px solid rgba(58,159,255,0.2);
+}
+
+/* ═══ CASCADE DIAGRAM ═══ */
+.cascade {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.cascade-step {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: 6px;
+  position: relative;
+}
+
+.cascade-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 11px;
+  top: 22px;
+  width: 2px;
+  height: calc(100% + 4px);
+  background: linear-gradient(180deg, var(--border), transparent);
+}
+
+.cascade-num {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  font-size: 0.55rem;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.cascade-text {
+  font-size: 0.6rem;
+  line-height: 1.55;
+  color: #6a8090;
+  padding-top: 3px;
+}
+
+.cascade-text strong {
+  color: var(--white);
+  font-weight: 500;
+}
+
+/* ═══ WHAT'S HAPPENING NOW ═══ */
+.now-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.now-card {
+  background: rgba(255,51,85,0.04);
+  border: 1px solid rgba(255,51,85,0.15);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.now-title {
+  font-size: 0.55rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--prrt2-bad);
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+.now-body {
+  font-size: 0.56rem;
+  line-height: 1.5;
+  color: #556070;
+}
+
+/* ═══ COMPENSATION SECTION ═══ */
+.compensation {
+  background: rgba(0,229,160,0.03);
+  border: 1px solid rgba(0,229,160,0.2);
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.comp-title {
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--prrt2-good);
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.comp-item {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin-bottom: 7px;
+}
+
+.comp-check {
+  color: var(--prrt2-good);
+  font-size: 0.7rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.comp-text {
+  font-size: 0.58rem;
+  line-height: 1.5;
+  color: #5a7a6a;
+}
+
+.comp-text strong { color: var(--prrt2-good); }
+</style>
+</head>
+<body>
+
+<div class="title-block">
+  <h1>My PRRT2 — Nav Channel & Symptom Map</h1>
+  <p class="subtitle">Heterozygous PRRT2 mutation · Haploinsufficiency · Nav channel dysregulation</p>
+</div>
+
+<!-- SECTION 1: WHAT PRRT2 IS -->
+<div class="section-label">① My PRRT2 Gene Status</div>
+<div class="prrt2-status">
+  <div class="allele-card working">
+    <div class="allele-icon">✓</div>
+    <div class="allele-title working">Allele #1 — Working</div>
+    <div class="allele-body">Produces normal, fully functional PRRT2 protein. Works correctly. Problem: 50% output is not enough to fully brake Nav channels.</div>
+  </div>
+  <div class="allele-card broken">
+    <div class="allele-icon">✗</div>
+    <div class="allele-title broken">Allele #2 — Silent</div>
+    <div class="allele-body">Frameshift mutation c.649dupC. Extra cytosine inserted → premature stop codon → mRNA destroyed by NMD. Produces zero PRRT2 protein.</div>
+  </div>
+</div>
+
+<!-- SECTION 2: WHAT PRRT2 NORMALLY DOES -->
+<div class="section-label">② What Healthy PRRT2 Does to Nav Channels</div>
+<div class="channel-container">
+
+  <!-- SVG Nav Channel -->
+  <div class="channel-svg-wrapper">
+  <svg viewBox="0 0 360 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:400px;display:block;margin:0 auto 12px">
+    <!-- Membrane -->
+    <rect x="0" y="75" width="360" height="12" fill="rgba(58,159,255,0.08)" rx="2"/>
+    <rect x="0" y="113" width="360" height="12" fill="rgba(58,159,255,0.08)" rx="2"/>
+    <text x="4" y="72" fill="#334455" font-size="8" font-family="JetBrains Mono">EXTRACELLULAR — Na⁺ high</text>
+    <text x="4" y="145" fill="#334455" font-size="8" font-family="JetBrains Mono">INTRACELLULAR — Na⁺ low</text>
+
+    <!-- Domain I -->
+    <g>
+      <rect x="20" y="60" width="14" height="80" rx="3" fill="rgba(58,159,255,0.25)" stroke="#3a9fff" stroke-width="1"/>
+      <rect x="36" y="60" width="14" height="80" rx="3" fill="rgba(58,159,255,0.2)" stroke="#3a9fff" stroke-width="1"/>
+      <rect x="52" y="60" width="14" height="80" rx="3" fill="rgba(58,159,255,0.2)" stroke="#3a9fff" stroke-width="1"/>
+      <rect x="68" y="60" width="14" height="80" rx="3" fill="rgba(58,159,255,0.3)" stroke="#3a9fff" stroke-width="1.5"/>
+      <rect x="84" y="60" width="14" height="80" rx="3" fill="rgba(58,159,255,0.2)" stroke="#3a9fff" stroke-width="1"/>
+      <rect x="100" y="60" width="14" height="80" rx="3" fill="rgba(58,159,255,0.2)" stroke="#3a9fff" stroke-width="1"/>
+      <text x="72" y="55" fill="#3a9fff" font-size="7" font-family="JetBrains Mono" text-anchor="middle">DI</text>
+    </g>
+
+    <!-- Domain II -->
+    <g>
+      <rect x="126" y="60" width="14" height="80" rx="3" fill="rgba(58,159,255,0.25)" stroke="#3a9fff" stroke-width="1"/>
+      <rect x="142" y="60" width="14" height="80" rx="3" fill="rgba(58,159,255,0.2)" stroke="#3a9fff" stroke-width="1"/>
+      <rect x="158" y="60" width="14" height="80" rx="3" fill="rgba(58,159,255,0.2)" stroke="#3a9fff" stroke-width="1"/>
+      <rect x="174" y="60" width="14" height="80" rx="3" fill="rgba(58,159,255,0.3)" stroke="#3a9fff" stroke-width="1.5"/>
+      <rect x="190" y="60" width="14" height="80" rx="3" fill="rgba(58,159,255,0.2)" stroke="#3a9fff" stroke-width="1"/>
+      <rect x="206" y="60" width="14" height="80" rx="3" fill="rgba(58,159,255,0.2)" stroke="#3a9fff" stroke-width="1"/>
+      <text x="172" y="55" fill="#3a9fff" font-size="7" font-family="JetBrains Mono" text-anchor="middle">DII</text>
+    </g>
+
+    <!-- Domain III + IV abbreviated -->
+    <rect x="226" y="60" width="120" height="80" rx="4" fill="rgba(58,159,255,0.1)" stroke="#3a9fff" stroke-width="1" stroke-dasharray="4,2"/>
+    <text x="286" y="105" fill="#3a9fff" font-size="8" font-family="JetBrains Mono" text-anchor="middle">DIII · DIV</text>
+
+    <!-- Pore -->
+    <ellipse cx="167" cy="87" rx="8" ry="5" fill="rgba(96,207,255,0.3)" stroke="#60cfff" stroke-width="1.5"/>
+    <text x="167" y="90" fill="#60cfff" font-size="6" font-family="JetBrains Mono" text-anchor="middle">pore</text>
+
+    <!-- Na+ ions -->
+    <circle cx="167" cy="40" r="5" fill="rgba(96,207,255,0.6)" stroke="#60cfff" stroke-width="1"/>
+    <text x="167" y="43" fill="#fff" font-size="5" font-family="JetBrains Mono" text-anchor="middle">Na⁺</text>
+
+    <!-- Inactivation gate -->
+    <rect x="148" y="138" width="38" height="10" rx="3" fill="rgba(255,184,48,0.3)" stroke="#ffb830" stroke-width="1.5"/>
+    <text x="167" y="146" fill="#ffb830" font-size="6" font-family="JetBrains Mono" text-anchor="middle">inact. gate</text>
+
+    <!-- PRRT2 healthy binding -->
+    <rect x="30" y="148" width="80" height="28" rx="5" fill="rgba(0,229,160,0.12)" stroke="#00e5a0" stroke-width="1.5"/>
+    <text x="70" y="160" fill="#00e5a0" font-size="7" font-family="JetBrains Mono" text-anchor="middle" font-weight="700">PRRT2 ✓</text>
+    <text x="70" y="171" fill="#00e5a0" font-size="6" font-family="JetBrains Mono" text-anchor="middle">braking Nav</text>
+    <line x1="70" y1="148" x2="70" y2="140" stroke="#00e5a0" stroke-width="1" stroke-dasharray="3,2"/>
+
+    <!-- PRRT2 missing marker -->
+    <rect x="230" y="148" width="80" height="28" rx="5" fill="rgba(255,51,85,0.1)" stroke="#ff3355" stroke-width="1.5" stroke-dasharray="4,2"/>
+    <text x="270" y="160" fill="#ff3355" font-size="7" font-family="JetBrains Mono" text-anchor="middle" font-weight="700">PRRT2 ✗</text>
+    <text x="270" y="171" fill="#ff3355" font-size="6" font-family="JetBrains Mono" text-anchor="middle">50% missing</text>
+    <line x1="270" y1="148" x2="270" y2="140" stroke="#ff3355" stroke-width="1" stroke-dasharray="3,2"/>
+
+    <!-- State label -->
+    <text x="300" y="30" fill="#445566" font-size="7" font-family="JetBrains Mono">Nav1.1 / Nav1.2 / Nav1.6</text>
+  </svg>
+  </div>
+
+  <div class="mechanism-grid">
+    <div class="mech-card">
+      <div class="mech-card-title">Normal PRRT2 action</div>
+      <div class="mech-card-body">Binds Nav α-subunit intracellularly. Slows recovery from inactivation. Reduces surface channel density. Extends refractory period between firings.</div>
+    </div>
+    <div class="mech-card">
+      <div class="mech-card-title">My 50% deficit</div>
+      <div class="mech-card-body">Channels recover from inactivation faster. More channels at membrane surface. Shorter refractory period. Neurons can fire again sooner — edge of paroxysmal burst.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3: THE CASCADE -->
+<div class="section-label">③ How One Gene Mutation Causes All My Symptoms</div>
+<div class="cascade">
+  <div class="cascade-step">
+    <div class="cascade-num" style="background:rgba(255,51,85,0.2);color:#ff3355;">1</div>
+    <div class="cascade-text"><strong>PRRT2 frameshift</strong> → one allele silenced → 50% PRRT2 protein output from birth</div>
+  </div>
+  <div class="cascade-step">
+    <div class="cascade-num" style="background:rgba(58,159,255,0.2);color:#3a9fff;">2</div>
+    <div class="cascade-text"><strong>Nav channels under-braked</strong> → faster inactivation recovery → shorter refractory period across striatum, cortex, cerebellum</div>
+  </div>
+  <div class="cascade-step">
+    <div class="cascade-num" style="background:rgba(255,184,48,0.2);color:#ffb830;">3</div>
+    <div class="cascade-text"><strong>Basal ganglia circuit destabilized</strong> → striatal MSNs misfire → abnormal motor output signals sent to thalamus and motor cortex</div>
+  </div>
+  <div class="cascade-step">
+    <div class="cascade-num" style="background:rgba(255,107,53,0.2);color:#ff6b35;">4</div>
+    <div class="cascade-text"><strong>Motor circuits develop maladaptive plasticity</strong> → brain learned wrong movement patterns from birth → generalized dystonia, cervical dystonia</div>
+  </div>
+  <div class="cascade-step">
+    <div class="cascade-num" style="background:rgba(255,107,53,0.2);color:#ff6b35;">5</div>
+    <div class="cascade-text"><strong>Laryngeal motor circuit affected</strong> → vocal cord motor control dysregulated → dysphonia — most functionally burdensome symptom</div>
+  </div>
+  <div class="cascade-step">
+    <div class="cascade-num" style="background:rgba(0,212,170,0.2);color:#00d4aa;">6</div>
+    <div class="cascade-text"><strong>Paroxysmal episodes</strong> → emotionally triggered circuit tipping → sudden stiffening or tone loss → full consciousness maintained throughout</div>
+  </div>
+  <div class="cascade-step">
+    <div class="cascade-num" style="background:rgba(0,212,170,0.2);color:#00d4aa;">7</div>
+    <div class="cascade-text"><strong>Sleep circuit dysregulation</strong> → PRRT2 expressed in sleep/arousal circuits → partial cataplexy features → slow-wave sleep disruption</div>
+  </div>
+</div>
+
+<!-- SECTION 4: MY PROBLEM AREAS -->
+<div class="section-label">④ My Specific Problem Areas — Brain & Body</div>
+
+<!-- Brain SVG Map -->
+<div class="symptom-map">
+  <svg viewBox="0 0 340 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:400px;display:block;margin:0 auto">
+
+    <!-- Brain outline -->
+    <ellipse cx="170" cy="110" rx="120" ry="95" fill="rgba(8,15,28,0.8)" stroke="#1a3050" stroke-width="1.5"/>
+
+    <!-- Cerebral cortex highlight -->
+    <path d="M 80 60 Q 100 35 130 30 Q 160 25 190 30 Q 220 35 245 55 Q 265 75 268 100 Q 270 115 265 130"
+      fill="none" stroke="rgba(58,159,255,0.3)" stroke-width="8" stroke-linecap="round"/>
+    <text x="170" y="52" fill="rgba(58,159,255,0.6)" font-size="7" font-family="JetBrains Mono" text-anchor="middle">Motor Cortex</text>
+
+    <!-- Striatum/Basal Ganglia -->
+    <ellipse cx="160" cy="115" rx="28" ry="18" fill="rgba(255,51,85,0.2)" stroke="#ff3355" stroke-width="1.5"/>
+    <text x="160" y="112" fill="#ff3355" font-size="6.5" font-family="JetBrains Mono" text-anchor="middle" font-weight="700">Striatum</text>
+    <text x="160" y="122" fill="#ff3355" font-size="5.5" font-family="JetBrains Mono" text-anchor="middle">PRRT2 dense</text>
+
+    <!-- Thalamus -->
+    <ellipse cx="170" cy="148" rx="20" ry="14" fill="rgba(255,184,48,0.15)" stroke="#ffb830" stroke-width="1.5"/>
+    <text x="170" y="152" fill="#ffb830" font-size="6.5" font-family="JetBrains Mono" text-anchor="middle">Thalamus</text>
+
+    <!-- Substantia Nigra -->
+    <ellipse cx="148" cy="165" rx="16" ry="9" fill="rgba(255,107,53,0.15)" stroke="#ff6b35" stroke-width="1"/>
+    <text x="148" y="168" fill="#ff6b35" font-size="5.5" font-family="JetBrains Mono" text-anchor="middle">SNc/SNr</text>
+
+    <!-- Cerebellum -->
+    <ellipse cx="230" cy="158" rx="30" ry="22" fill="rgba(58,159,255,0.08)" stroke="#3a9fff" stroke-width="1" stroke-dasharray="3,2"/>
+    <text x="230" y="156" fill="#3a9fff" font-size="6.5" font-family="JetBrains Mono" text-anchor="middle">Cerebellum</text>
+    <text x="230" y="165" fill="rgba(58,159,255,0.5)" font-size="5.5" font-family="JetBrains Mono" text-anchor="middle">motor coord.</text>
+
+    <!-- Brainstem -->
+    <rect x="148" y="185" width="44" height="30" rx="6" fill="rgba(0,212,170,0.08)" stroke="#00d4aa" stroke-width="1"/>
+    <text x="170" y="202" fill="#00d4aa" font-size="6.5" font-family="JetBrains Mono" text-anchor="middle">Brainstem</text>
+
+    <!-- Arrows connecting -->
+    <line x1="160" y1="133" x2="164" y2="134" stroke="#ff3355" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#arr-red)"/>
+    <line x1="170" y1="162" x2="170" y2="185" stroke="#00d4aa" stroke-width="1" stroke-dasharray="3,2"/>
+
+    <!-- Sleep circuit indicator -->
+    <path d="M 95 130 Q 80 145 85 165" fill="none" stroke="rgba(0,212,170,0.4)" stroke-width="1.5" stroke-dasharray="3,2"/>
+    <text x="65" y="158" fill="rgba(0,212,170,0.7)" font-size="6" font-family="JetBrains Mono">sleep</text>
+    <text x="65" y="166" fill="rgba(0,212,170,0.7)" font-size="6" font-family="JetBrains Mono">circuits</text>
+
+    <!-- CERVICAL - neck area below brain -->
+    <rect x="148" y="225" width="44" height="20" rx="4" fill="rgba(255,107,53,0.12)" stroke="#ff6b35" stroke-width="1"/>
+    <text x="170" y="238" fill="#ff6b35" font-size="6" font-family="JetBrains Mono" text-anchor="middle">Cervical / Larynx</text>
+
+    <!-- Problem markers -->
+    <circle cx="160" cy="100" r="4" fill="none" stroke="#ff3355" stroke-width="1.5">
+      <animate attributeName="r" values="4;8;4" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="1;0;1" dur="2s" repeatCount="indefinite"/>
+    </circle>
+
+    <circle cx="170" cy="148" r="4" fill="none" stroke="#ffb830" stroke-width="1.5">
+      <animate attributeName="r" values="4;7;4" dur="2.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="1;0;1" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- Legend -->
+    <rect x="10" y="240" width="8" height="8" rx="2" fill="rgba(255,51,85,0.3)" stroke="#ff3355" stroke-width="1"/>
+    <text x="22" y="248" fill="#ff3355" font-size="6" font-family="JetBrains Mono">Primary problem zone</text>
+    <rect x="10" y="252" width="8" height="8" rx="2" fill="rgba(255,184,48,0.2)" stroke="#ffb830" stroke-width="1"/>
+    <text x="22" y="260" fill="#ffb830" font-size="6" font-family="JetBrains Mono">Secondary affected</text>
+    <rect x="10" y="264" width="8" height="8" rx="2" fill="rgba(58,159,255,0.15)" stroke="#3a9fff" stroke-width="1" stroke-dasharray="2,1"/>
+    <text x="22" y="272" fill="#3a9fff" font-size="6" font-family="JetBrains Mono">Circuit involvement</text>
+  </svg>
+</div>
+
+<!-- SECTION 5: MY SYMPTOMS EXPLAINED -->
+<div class="section-label">⑤ Each Symptom — Mechanism & Region</div>
+<div class="symptom-grid">
+
+  <div class="symptom-card primary">
+    <div class="symptom-dot dot-red"></div>
+    <div>
+      <div class="symptom-name">Dysphonia</div>
+      <div class="symptom-mechanism">Laryngeal motor neurons receive dysregulated signals from motor cortex via corticobulbar tract. Nav channel instability in laryngeal motor circuit causes inconsistent vocal cord tension and adduction. Most functionally burdensome symptom.</div>
+      <span class="symptom-region">Laryngeal motor cortex → brainstem → vocal cords</span>
+    </div>
+  </div>
+
+  <div class="symptom-card primary">
+    <div class="symptom-dot dot-red"></div>
+    <div>
+      <div class="symptom-name">Generalized Dystonia</div>
+      <div class="symptom-mechanism">Striatal MSNs misfiring from birth → basal ganglia output to thalamus abnormal → motor cortex receives wrong timing signals → muscles throughout body receive simultaneous conflicting commands. Maladaptive plasticity locked in over decades.</div>
+      <span class="symptom-region">Striatum → GPi → Thalamus → Motor Cortex</span>
+    </div>
+  </div>
+
+  <div class="symptom-card primary">
+    <div class="symptom-dot dot-orange"></div>
+    <div>
+      <div class="symptom-name">Cervical Dystonia</div>
+      <div class="symptom-mechanism">Same basal ganglia circuit dysfunction but specifically affecting cervical motor programs. Neck muscles receive tonically abnormal drive. Years of abnormal signaling has remodeled the muscle tissue around the dysfunction.</div>
+      <span class="symptom-region">Basal ganglia → Cervical motor cortex → C1–C4 muscles</span>
+    </div>
+  </div>
+
+  <div class="symptom-card secondary">
+    <div class="symptom-dot dot-yellow"></div>
+    <div>
+      <div class="symptom-name">Paroxysmal Episodes</div>
+      <div class="symptom-mechanism">Circuit sitting near tipping threshold due to PRRT2 insufficiency. Emotional triggers → norepinephrine/dopamine surge → Nav channels tip over refractory threshold → sudden synchronous burst. Full consciousness maintained — not seizure. Consistent with partial cataplexy features.</div>
+      <span class="symptom-region">Amygdala → Striatum → Thalamus circuit</span>
+    </div>
+  </div>
+
+  <div class="symptom-card secondary">
+    <div class="symptom-dot dot-yellow"></div>
+    <div>
+      <div class="symptom-name">Tics</div>
+      <div class="symptom-mechanism">Striato-thalamo-cortical loop instability generating brief unwanted motor commands. PRRT2 expressed in striatal interneurons that normally suppress tic-generating circuits. Reduced braking → breakthrough motor fragments.</div>
+      <span class="symptom-region">Striatum → Supplementary Motor Area</span>
+    </div>
+  </div>
+
+  <div class="symptom-card tertiary">
+    <div class="symptom-dot dot-blue"></div>
+    <div>
+      <div class="symptom-name">Sleep Dysregulation</div>
+      <div class="symptom-mechanism">PRRT2 expressed in hypothalamic and brainstem circuits governing sleep-wake transitions. Nav channel instability disrupts slow-wave sleep architecture. Possible partial cataplexy during emotional arousal — hypocretin/orexin system stress. Warrants PSG/MSLT evaluation.</div>
+      <span class="symptom-region">Hypothalamus → LC → Brainstem arousal circuits</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- SECTION 6: WHAT'S HAPPENING INSIDE NOW -->
+<div class="section-label">⑥ What's Happening Inside Right Now</div>
+<div class="now-grid">
+  <div class="now-card">
+    <div class="now-title">Nav channels</div>
+    <div class="now-body">Recovering from inactivation ~2x faster than normal. More channels at membrane surface. Refractory period too short — edge of burst firing continuously.</div>
+  </div>
+  <div class="now-card">
+    <div class="now-title">Striatum</div>
+    <div class="now-body">MSNs receiving inadequate PRRT2 braking. Direct and indirect pathways both unstable. Motor output timing inconsistent since childhood.</div>
+  </div>
+  <div class="now-card">
+    <div class="now-title">Electrolytes</div>
+    <div class="now-body">Na⁺ deficit weakens electrochemical gradient. Already unstable Nav channels lose driving force. Circuit tipping threshold lowers further on hot work days.</div>
+  </div>
+  <div class="now-card">
+    <div class="now-title">Sleep circuits</div>
+    <div class="now-body">Slow-wave sleep likely fragmented. Peak neuronal protein synthesis window disrupted nightly. PRRT2 output from good allele suboptimal without deep sleep.</div>
+  </div>
+</div>
+
+<!-- SECTION 7: COMPENSATION STRATEGY -->
+<div class="section-label">⑦ My Compensation Strategy</div>
+<div class="compensation">
+  <div class="comp-title">Targeting the Circuit From Multiple Angles</div>
+
+  <div class="comp-item">
+    <div class="comp-check">→</div>
+    <div class="comp-text"><strong>Salt daily</strong> — restore Na⁺ electrochemical gradient. Directly stabilizes Nav channel driving force. Most immediate intervention.</div>
+  </div>
+  <div class="comp-item">
+    <div class="comp-check">→</div>
+    <div class="comp-text"><strong>Sodium oxybate pathway</strong> — GABA-B enhancement compensates for PRRT2 brake insufficiency at circuit level. Also restores slow-wave sleep = peak PRRT2 protein synthesis window.</div>
+  </div>
+  <div class="comp-item">
+    <div class="comp-check">→</div>
+    <div class="comp-text"><strong>Sulforaphane (sprouts + Jarrow)</strong> — Nrf2 activation reduces neuroinflammation in basal ganglia circuits. Supports neuronal health in PRRT2-expressing cells.</div>
+  </div>
+  <div class="comp-item">
+    <div class="comp-check">→</div>
+    <div class="comp-text"><strong>Magnesium threonate</strong> — crosses blood brain barrier. Nav channel cofactor. Increases CNS magnesium concentration in exactly the circuits affected.</div>
+  </div>
+  <div class="comp-item">
+    <div class="comp-check">→</div>
+    <div class="comp-text"><strong>Taurine 2,000mg</strong> — GABA-A agonist. Directly adds inhibitory tone to compensate for PRRT2 excitability gap.</div>
+  </div>
+  <div class="comp-item">
+    <div class="comp-check">→</div>
+    <div class="comp-text"><strong>Lacosamide</strong> — targets slow inactivation of Nav channels specifically. More precise than carbamazepine. Quiets paroxysmal burst pattern without cognitive suppression.</div>
+  </div>
+  <div class="comp-item">
+    <div class="comp-check">→</div>
+    <div class="comp-text"><strong>Blood sugar stability</strong> — prevents metabolic stress that lowers paroxysmal tipping threshold. Critical on heat-exposure work days.</div>
+  </div>
+</div>
+
+
+<div style="margin-top:28px;padding:12px 16px;border-top:1px solid #112030;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;font-family:'JetBrains Mono',monospace;font-size:0.52rem;letter-spacing:0.08em;text-transform:uppercase;color:#445566">
+  <span><span style="color:#00e5a0;font-weight:700">PRRT2.org</span> &nbsp;·&nbsp; PRRT2 Gene Alliance</span>
+  <span style="color:#2a3a4a">Alliance Perspectives &nbsp;·&nbsp; Visuals &amp; Diagrams</span>
+</div>
+</body>
+</html>
