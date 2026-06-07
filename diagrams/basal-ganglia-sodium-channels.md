@@ -10,6 +10,6 @@ _Developed by the PRRT2 Foundation to explain the circuit mechanisms underlying 
 
 The diagram covers four layers: cortical input driving the striatum, the dopaminergic gain-knob from the substantia nigra, the GABAergic thalamic brake from the globus pallidus, and the sodium channel biology connecting all three. PRRT2 sits at the intersection — which is why its loss of function produces symptoms across motor, sensory, and arousal circuits simultaneously.
 
-{% embed url="https://prrt2.github.io/perspectives/diagrams/basal_ganglia_sodium_channels.html" %}
+{% embed url="https://prrt2.github.io/expressions/diagrams/basal_ganglia_sodium_channels.html" %}
 
 See [The Sodium Channel Connection](https://www.prrt2.org/prrt2-gene-overview/sodium-channel-connection) for the cited reference version of this material.
