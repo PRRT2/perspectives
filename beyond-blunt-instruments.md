@@ -2,12 +2,12 @@
 
 ### The case for targeted PRRT2 therapies
 
-_An Alliance Perspective — a personal essay by PRRT2.org, who lives with PRRT2 · May 28, 2026_
+_An Expression — a personal essay by PRRT2.org, who lives with PRRT2 · May 28, 2026_
 
-{% hint style="success" %}
-**🧭 PRRT2.org Perspective**
+{% hint style="warning" %}
+**🧭 Foundation Note**
 
-_PRRT2.org's own perspective — our synthesis and lived experience, offered alongside the established science, not as established medical fact. Nothing here is medical advice, and nothing here is a reason to start, stop, or change a medication on your own. Those decisions belong with your specialist._
+_The PRRT2 Foundation’s own synthesis and lived experience, offered alongside the established science — not as established medical fact. Nothing here is medical advice, and nothing here is a reason to start, stop, or change a medication on your own. Those decisions belong with your specialist._
 {% endhint %}
 
 When you navigate a PRRT2 diagnosis — as an adult who is finally being named, or as a family caring for a child — you hit a frustrating reality fast: we manage this condition almost entirely with **hand-me-down medications.**
@@ -54,7 +54,7 @@ But notice what even the good news is: precision _within a borrowed class._ A mo
 
 ## Why we advocate
 
-This is exactly why the PRRT2 Gene Alliance exists. We do not accept the current standard of care as the finish line.
+This is exactly why the PRRT2 Foundation exists. We do not accept the current standard of care as the finish line.
 
 We want the scientific and pharmaceutical communities to recognize that stopping a seizure or a dyskinetic episode is only the beginning of the job. The goal is a therapy that addresses the **PRRT2 mechanism itself** — the shared root beneath the whole spectrum — so that neither a child nor an adult is ever forced to choose between the physical storms and the cognitive fog. (See [Future Therapeutics](https://www.prrt2.org/research/future-therapeutics) for where that science might lead, told honestly.)
 

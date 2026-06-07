@@ -2,10 +2,10 @@
 
 **How the basal ganglia pathways, dopamine modulation, GABAergic braking, and sodium channel biology intersect — and where PRRT2 sits in the middle of all of it.**
 
-{% hint style="success" %}
-**🧭 PRRT2.org Perspective**
+{% hint style="warning" %}
+**🧭 Foundation Note**
 
-_Developed by the PRRT2 Gene Alliance to explain the circuit mechanisms underlying PRRT2-related conditions. Includes established science and some emerging-evidence elements. Educational only — not diagnostic, not medical advice._
+_Developed by the PRRT2 Foundation to explain the circuit mechanisms underlying PRRT2-related conditions. Includes established science and some emerging-evidence elements. Educational only — not diagnostic, not medical advice._
 {% endhint %}
 
 The diagram covers four layers: cortical input driving the striatum, the dopaminergic gain-knob from the substantia nigra, the GABAergic thalamic brake from the globus pallidus, and the sodium channel biology connecting all three. PRRT2 sits at the intersection — which is why its loss of function produces symptoms across motor, sensory, and arousal circuits simultaneously.

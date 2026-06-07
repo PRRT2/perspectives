@@ -2,8 +2,8 @@
 
 **One adult PRRT2 patient's full symptom constellation mapped to the underlying circuit mechanisms — from Nav channel biology through basal ganglia dysfunction to each specific presentation.**
 
-{% hint style="success" %}
-**🧭 PRRT2.org Perspective**
+{% hint style="warning" %}
+**🧭 Foundation Note**
 
 _This diagram maps a real PRRT2 patient's experience — confirmed pathogenic variant, diagnosed in adulthood after decades without answers. Symptom-to-circuit mappings are grounded in published science. The management approach in Section 7 is illustrative — one patient's supervised medical picture, not a recommendation or protocol to follow. Nothing here is medical advice._
 {% endhint %}

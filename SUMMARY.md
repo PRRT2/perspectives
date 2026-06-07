@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Alliance Perspectives](README.md)
+* [Expressions](README.md)
 
 ## Articles
 

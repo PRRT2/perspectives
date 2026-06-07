@@ -2,12 +2,12 @@
 
 ### The PRRT2 count, the invisible thousands, and the official number that's almost certainly wrong by an order of magnitude
 
-_An Alliance Perspective · May 29, 2026_
+_An Expression · May 29, 2026_
 
-{% hint style="success" %}
-**🧭 PRRT2.org Perspective**
+{% hint style="warning" %}
+**🧭 Foundation Note**
 
-_PRRT2.org's own perspective — our synthesis and lived experience, offered alongside the established science, not as established medical fact._
+_The PRRT2 Foundation’s own synthesis and lived experience, offered alongside the established science — not as established medical fact._
 {% endhint %}
 
 Every official source describes PRRT2 as rare. Every patient who finds their way to a community like ours finds otherwise.
@@ -80,7 +80,7 @@ This isn't an abstract accounting problem. The undercount has real-world consequ
 
 That correction is happening too quietly, and decades too late. **One of the jobs of this site is to say it louder, sooner, and to more people.**
 
-## What the Alliance is doing about it
+## What the Foundation is doing about it
 
 We can't unilaterally recount the world's PRRT2 patients. We can refuse to accept the undercount as the truth, and we can build the conditions for a more honest count to emerge.
 
