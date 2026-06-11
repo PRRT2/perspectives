@@ -1,3 +1,28 @@
+---
+description: >-
+  How many people carry PRRT2 gene mutations? The official prevalence figure is
+  wrong by an order of magnitude. The math, the reasons, and what it means for
+  research.
+layout:
+  width: default
+  title:
+    visible: true
+  description:
+    visible: false
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+  tags:
+    visible: true
+  actions:
+    visible: true
+---
+
 # How Many of Us Are There?
 
 ### The PRRT2 count, the invisible thousands, and the official number that's almost certainly wrong by an order of magnitude
@@ -12,15 +37,15 @@ _The PRRT2 Foundation’s own synthesis and lived experience, offered alongside 
 
 Every official source describes PRRT2 as rare. Every patient who finds their way to a community like ours finds otherwise.
 
-How rare is the PRRT2 mutation actually? The official answer is some version of *1 in 150,000.* That figure appears in OMIM, GeneReviews, NORD, and every peer-reviewed PRRT2 review on the shelf. It is, almost certainly, **wrong by an order of magnitude** — and not because anyone falsified it. Because the math the field built it from doesn't describe what the field uses it to describe.
+How rare is the PRRT2 mutation actually? The official answer is some version of _1 in 150,000._ That figure appears in OMIM, GeneReviews, NORD, and every peer-reviewed PRRT2 review on the shelf. It is, almost certainly, **wrong by an order of magnitude** — and not because anyone falsified it. Because the math the field built it from doesn't describe what the field uses it to describe.
 
 Once you do the math properly — gene-centered, not phenotype-centered — the picture changes. So does the case for treating this condition like it actually matters.
 
 ## The number you'll be told
 
-Open any reference page on PRRT2 and you'll see some version of: *"PKD has an estimated prevalence of 1 in 150,000 individuals."* That figure traces back to Chen and colleagues in 2011 and was formalized by Ebrahimi-Fakhari and colleagues in 2015. Across a world population of 8.1 billion, the math gives you about **54,000 people worldwide with PKD.**
+Open any reference page on PRRT2 and you'll see some version of: _"PKD has an estimated prevalence of 1 in 150,000 individuals."_ That figure traces back to Chen and colleagues in 2011 and was formalized by Ebrahimi-Fakhari and colleagues in 2015. Across a world population of 8.1 billion, the math gives you about **54,000 people worldwide with PKD.**
 
-Now read it again. *"**PKD** has a prevalence of 1 in 150,000."*
+Now read it again. _"**PKD** has a prevalence of 1 in 150,000."_
 
 Not PRRT2. PKD. The condition, not the gene.
 
@@ -32,17 +57,17 @@ To estimate the actual population of people carrying PRRT2 pathogenic variants, 
 
 **Step 1: PKD overall — roughly 54,000 worldwide** (the canonical 1 in 150,000 figure).
 
-**Step 2: PKD with a PRRT2 cause.** Not every PKD case is PRRT2-driven. Other genes (notably TMEM151A) and sporadic causes exist. PRRT2 dominates *familial* PKD and accounts for a smaller fraction of *sporadic* PKD; combined, it sits around 60–70% of PKD cases. That puts **PRRT2-PKD at roughly 32,000–38,000 worldwide.**
+**Step 2: PKD with a PRRT2 cause.** Not every PKD case is PRRT2-driven. Other genes (notably TMEM151A) and sporadic causes exist. PRRT2 dominates _familial_ PKD and accounts for a smaller fraction of _sporadic_ PKD; combined, it sits around 60–70% of PKD cases. That puts **PRRT2-PKD at roughly 32,000–38,000 worldwide.**
 
-**Step 3: Scale to the whole gene.** This is the step the field never asks readers to take. In the 2015 *Brain* meta-analysis by Ebrahimi-Fakhari and colleagues — the most rigorous catalogue of published PRRT2 cases assembled — **PKD accounted for only 38.7% of patients.** The rest presented with benign familial infantile epilepsy (41.7%), the combined ICCA syndrome (14.3%), and other phenotypes (5.3%). PKD is the most-studied PRRT2 condition. It is not the most common one. **BFIE actually exceeds it.**
+**Step 3: Scale to the whole gene.** This is the step the field never asks readers to take. In the 2015 _Brain_ meta-analysis by Ebrahimi-Fakhari and colleagues — the most rigorous catalogue of published PRRT2 cases assembled — **PKD accounted for only 38.7% of patients.** The rest presented with benign familial infantile epilepsy (41.7%), the combined ICCA syndrome (14.3%), and other phenotypes (5.3%). PKD is the most-studied PRRT2 condition. It is not the most common one. **BFIE actually exceeds it.**
 
 If PKD is roughly 39% of PRRT2 phenotypes, the symptomatic PRRT2 population is about 2.5 times the PRRT2-PKD count: **somewhere in the range of 80,000 to 100,000 people** with a recognized PRRT2 condition worldwide.
 
 **Step 4: Add asymptomatic carriers.** PRRT2 has incomplete penetrance — many carriers never develop noticeable symptoms, never see a clinician, never get tested. Penetrance estimates vary across studies, but the commonly cited range is roughly 60–80%. Apply that to the symptomatic population: total carriers in the **100,000 to 150,000 range worldwide.**
 
-**Step 5: Account for the wider spectrum the count doesn't include.** This step is harder to put a number on, but it matters. As described in [Exploring the Wider Spectrum](https://www.prrt2.org/exploring-the-wider-spectrum), there are real patients living with PRRT2 whose presentations — generalized dystonia, dysphonia, exertional patterns, atypical seizures, mixed paroxysmal phenotypes, persistent symptoms into adulthood — don't fit the textbook categories that the 2015 review used. They are absent from the published count entirely. The number we just calculated is *still conservative*, because it only includes the phenotypes the field has agreed to name.
+**Step 5: Account for the wider spectrum the count doesn't include.** This step is harder to put a number on, but it matters. As described in [Exploring the Wider Spectrum](https://www.prrt2.org/exploring-the-wider-spectrum), there are real patients living with PRRT2 whose presentations — generalized dystonia, dysphonia, exertional patterns, atypical seizures, mixed paroxysmal phenotypes, persistent symptoms into adulthood — don't fit the textbook categories that the 2015 review used. They are absent from the published count entirely. The number we just calculated is _still conservative_, because it only includes the phenotypes the field has agreed to name.
 
-So when people ask *how many of us are there*, the honest answer is some version of: **100,000 to 150,000 worldwide, very possibly more, with about three thousand of us actually documented in the medical literature.** A gap of **thirty-five to fifty times.** Or wider.
+So when people ask _how many of us are there_, the honest answer is some version of: **100,000 to 150,000 worldwide, very possibly more, with about three thousand of us actually documented in the medical literature.** A gap of **thirty-five to fifty times.** Or wider.
 
 A reasonable reader, presented with these numbers, has every right to ask the obvious question.
 
@@ -54,7 +79,7 @@ There is something worse, in a way: **the under-count doesn't require a conspira
 
 **Ascertainment bias.** The published count only ever included patients who reached researchers and got reported. People who never present to a clinician — because their symptoms are mild, or were dismissed, or were misdiagnosed as something else, or because they were never offered testing — never enter the literature. The published number is a measure of who got reached. It is not a measure of who has the gene.
 
-**The "benign" labels.** For years the field referred to BFIS as "benign familial infantile epilepsy" and to PKD as a "benign" paroxysmal disorder. That language did real damage. It told clinicians, patients, and funders that PRRT2 was a thing children outgrow. Only in 2025 and 2026 — in papers we reference in [Current Literature](https://www.prrt2.org/research/current-literature) — has the literature begun to acknowledge what patients have been saying for years: PRRT2-related conditions are *"not invariably benign."* That correction is two decades late. Adults whose conditions never resolved, who carry persistent and disabling symptoms into mid-life, have been waving at a field whose own vocabulary instructed it not to look.
+**The "benign" labels.** For years the field referred to BFIS as "benign familial infantile epilepsy" and to PKD as a "benign" paroxysmal disorder. That language did real damage. It told clinicians, patients, and funders that PRRT2 was a thing children outgrow. Only in 2025 and 2026 — in papers we reference in [Current Literature](https://www.prrt2.org/research/current-literature) — has the literature begun to acknowledge what patients have been saying for years: PRRT2-related conditions are _"not invariably benign."_ That correction is two decades late. Adults whose conditions never resolved, who carry persistent and disabling symptoms into mid-life, have been waving at a field whose own vocabulary instructed it not to look.
 
 **The pediatric tilt.** PRRT2 research has been overwhelmingly concentrated on pediatric phenotypes — infantile seizures, childhood-onset PKD — because those are where the gene presents in the cleanest, most diagnosable form. The adult tail, the long arc, the persistent symptoms beyond age twenty, the atypical presentations that don't fit the textbook silhouette: those are systematically under-studied. The literature is a map of where children with PRRT2 reach pediatric neurologists. It is not, in any meaningful sense, a map of where adults with PRRT2 live.
 
@@ -70,11 +95,11 @@ If you want to call something out for being hidden, don't call out individuals. 
 
 This isn't an abstract accounting problem. The undercount has real-world consequences for real people.
 
-**Research funding and pharmaceutical development follow the numbers.** *"About 3,000 documented cases, very rare"* is a fundamentally different proposition to a funder than *"100,000+ likely carriers, severely under-recognized."* For a condition with no targeted therapy whatsoever (see [Beyond the Blunt Instruments](beyond-blunt-instruments.md)) — where every drug currently used is borrowed from another condition — the count is part of why nothing has been built for us specifically. **The smaller the number looks, the smaller the case for investment looks.** And the case for investment is, in the end, the case for the future of treatment.
+**Research funding and pharmaceutical development follow the numbers.** _"About 3,000 documented cases, very rare"_ is a fundamentally different proposition to a funder than _"100,000+ likely carriers, severely under-recognized."_ For a condition with no targeted therapy whatsoever (see [Beyond the Blunt Instruments](beyond-blunt-instruments.md)) — where every drug currently used is borrowed from another condition — the count is part of why nothing has been built for us specifically. **The smaller the number looks, the smaller the case for investment looks.** And the case for investment is, in the end, the case for the future of treatment.
 
-**Clinician familiarity follows the numbers.** When the literature reports a couple of thousand cases, every clinician implicitly assumes they're unlikely to ever see one — so PRRT2 doesn't enter the differential. When the real population is fifty times larger, many of them already *have* seen patients with this gene and missed it. Under-counting reinforces under-recognition, which reinforces under-counting.
+**Clinician familiarity follows the numbers.** When the literature reports a couple of thousand cases, every clinician implicitly assumes they're unlikely to ever see one — so PRRT2 doesn't enter the differential. When the real population is fifty times larger, many of them already _have_ seen patients with this gene and missed it. Under-counting reinforces under-recognition, which reinforces under-counting.
 
-**Patients searching for themselves are guided by the numbers.** Someone with unexplained paroxysmal episodes, or generalized dystonia with no clear cause, or atypical seizures who has been told *"we don't know what this is,"* reads "PRRT2: prevalence 1 in 150,000" and concludes they probably don't have it. If the real figure for the *gene* is closer to 1 in 50,000 — and reaches across phenotypes most people have never heard of — far more would pursue testing and find their answer.
+**Patients searching for themselves are guided by the numbers.** Someone with unexplained paroxysmal episodes, or generalized dystonia with no clear cause, or atypical seizures who has been told _"we don't know what this is,"_ reads "PRRT2: prevalence 1 in 150,000" and concludes they probably don't have it. If the real figure for the _gene_ is closer to 1 in 50,000 — and reaches across phenotypes most people have never heard of — far more would pursue testing and find their answer.
 
 **The consequences compound.** Every adult living with PRRT2 today who could be diagnosed but isn't, every clinician who could recognize this gene but doesn't, every funder who could prioritize this research but won't — is being shaped, partly, by a number. That number is wrong. We don't believe it's wrong by malice. We do believe it's wrong in a way the field is collectively responsible for, has been slow to admit, and is only now beginning to correct in print.
 
@@ -85,7 +110,7 @@ That correction is happening too quietly, and decades too late. **One of the job
 We can't unilaterally recount the world's PRRT2 patients. We can refuse to accept the undercount as the truth, and we can build the conditions for a more honest count to emerge.
 
 * **Documenting the wider spectrum.** Adults and atypical presentations have to stop being missed — [Exploring the Wider Spectrum](https://www.prrt2.org/exploring-the-wider-spectrum) exists for exactly that purpose.
-* **Pushing the language.** The field is finally beginning to say *"not invariably benign."* We will keep saying it louder, sooner, and more directly than the textbooks do.
+* **Pushing the language.** The field is finally beginning to say _"not invariably benign."_ We will keep saying it louder, sooner, and more directly than the textbooks do.
 * **Supporting registries and natural-history studies.** These are the realistic near-term path to a more accurate count. (See [Clinical Trials](https://www.prrt2.org/research/clinical-trials) on why being counted matters.)
 * **Reaching the undiagnosed** through plain-language education someone can find by searching their symptoms — not just by being referred to a movement-disorder specialist they may never see.
 
@@ -96,7 +121,7 @@ The invisible thousands aren't a poetic phrase. They are real people — carryin
 * [OMIM — Entry 614386 (PRRT2)](https://omim.org/entry/614386) — Johns Hopkins University.
 * [GeneReviews — PRRT2-Related Disorder (NBK475803)](https://www.ncbi.nlm.nih.gov/books/NBK475803/) — University of Washington / NCBI.
 * [NORD — PRRT2-Associated Paroxysmal Movement Disorders](https://rarediseases.org/rare-diseases/prrt2-associated-paroxysmal-movement-disorders/) — National Organization for Rare Disorders.
-* Ebrahimi-Fakhari D, Saffari A, Westenberger A, Klein C. *The evolving spectrum of PRRT2-associated paroxysmal diseases.* **Brain** 138(12):3476–3495, 2015.
+* Ebrahimi-Fakhari D, Saffari A, Westenberger A, Klein C. _The evolving spectrum of PRRT2-associated paroxysmal diseases._ **Brain** 138(12):3476–3495, 2015.
 
 For the complete reference set, see [Official Resources](https://www.prrt2.org/resources/official-resources).
 
@@ -106,6 +131,6 @@ For the complete reference set, see [Official Resources](https://www.prrt2.org/r
 * [Exploring the Wider Spectrum](https://www.prrt2.org/exploring-the-wider-spectrum) — the cases the count doesn't reflect
 * [Beyond the Blunt Instruments](beyond-blunt-instruments.md) — why the count shapes the treatment landscape
 
----
+***
 
-_If you carry a PRRT2 variant — or you suspect you do — your story is part of how the real number gets built. Share it with the community through [Links & Support](https://www.prrt2.org/resources/links-and-support), or add it to [Patient Stories](https://www.prrt2.org/living-with-prrt2/patient-stories). The invisible thousands stop being invisible one voice at a time._
+_If you carry a PRRT2 variant — or you suspect you do — your story is part of how the real number gets built. Share it with the community through_ [_Links & Support_](https://www.prrt2.org/resources/links-and-support)_, or add it to_ [_Patient Stories_](https://www.prrt2.org/living-with-prrt2/patient-stories)_. The invisible thousands stop being invisible one voice at a time._
