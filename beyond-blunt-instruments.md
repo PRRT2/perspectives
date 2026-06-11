@@ -1,3 +1,28 @@
+---
+description: >-
+  PRRT2 patients manage seizures and dystonia with medications borrowed from
+  other conditions. The case for targeted PRRT2 therapy — from someone living
+  with the gene.
+layout:
+  width: default
+  title:
+    visible: true
+  description:
+    visible: false
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+  tags:
+    visible: true
+  actions:
+    visible: true
+---
+
 # Beyond the Blunt Instruments
 
 ### The case for targeted PRRT2 therapies
